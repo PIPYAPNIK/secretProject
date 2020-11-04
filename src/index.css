@@ -1,3 +1,19 @@
 body {
-    min-height: 100vh;
+  min-height: 100vh;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #212121;
+  line-height: 1.2;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100vh;
+}
+
+a,
+button {
+  outline: none !important;
 }
