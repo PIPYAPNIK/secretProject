@@ -1,17 +1,16 @@
 import React from 'react';
-import s from './Pokedex.module.scss';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import PokemonCardList from '../../components/PokemonCardList';
+import s from './ErrorPage.module.scss';
 
-const Pokedex = () => {
+const ErrorPage = () => {
   return (
     <div className={s.root}>
       <Header />
-      <PokemonCardList />
+      <p>404</p>
       <Footer />
     </div>
   );
 };
 
-export default Pokedex;
+export default ErrorPage;

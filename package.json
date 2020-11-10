@@ -20,6 +20,7 @@
   "dependencies": {
     "@types/react-router-dom": "^5.1.6",
     "classnames": "^2.2.6",
+    "hookrouter": "^1.2.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^5.2.0"
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
     "@types/classnames": "^2.2.11",
+    "@types/hookrouter": "^2.2.3",
     "@types/node-sass": "^4.11.1",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
