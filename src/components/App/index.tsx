@@ -1,14 +1,20 @@
 import React from 'react';
 import cn from 'classnames';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import s from './App.module.scss';
-import Header from '../Header';
-import Footer from '../Footer';
+import HomePage from '../../pages/Home';
+import Pokedex from '../../pages/Pokedex';
 
 const App = () => {
   return (
     <div className={cn(s.app)}>
-      <Header />
-      <Footer />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/pokedex" component={Pokedex} />
+          <Route path="/" />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 };

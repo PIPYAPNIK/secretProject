@@ -1,17 +1,21 @@
-.footer {
+.root {
   padding: 30px 15px;
   background-color: transparent;
 }
 
-.content {
-  max-width: 1130px;
+.wrap {
   width: 100%;
+  max-width: 1125px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
-.footer__pharagraph {
+.pharagraph {
   font-weight: bold;
   font-size: 18px;
+
+  span {
+    color: #f80037;
+  }
 }
