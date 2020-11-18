@@ -1,48 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './Pokedex.module.scss';
 import PokemonCardList from '../../components/PokemonCardList';
 import Layout from '../../components/Layout';
 import Heading from '../../components/Heading';
-
-interface IUsePokemons {
-  data: {
-    total: number;
-    pokemons: Array<object>;
-  };
-  isLoading: boolean;
-  isError: boolean;
-}
-
-const usePokemons = (): IUsePokemons => {
-  const [data, setData] = useState({ pokemons: [], total: 0 });
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const getPokemons = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons');
-        const result = await response.json();
-        setData(result);
-      } catch (ex) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getPokemons();
-  }, []);
-
-  return {
-    data,
-    isLoading,
-    isError,
-  };
-};
+import useData from '../../hook/getData';
 
 const Pokedex = () => {
-  const { data, isLoading, isError } = usePokemons();
+  const [searchValue, setSaerchValue] = useState('');
+  const [query, setQuery] = useState({});
+
+  const { data, isLoading, isError } = useData('getPokemons', query, [searchValue]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSaerchValue(e.target.value);
+    setQuery({
+      name: searchValue,
+    });
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -58,6 +32,9 @@ const Pokedex = () => {
         <Heading headingSize={1}>
           {data.total} <b>Pokemons</b> for you to choose your favorite
         </Heading>
+        <div>
+          <input type="text" value={searchValue} onChange={handleSearchChange} />
+        </div>
       </Layout>
       <PokemonCardList pokemons={data.pokemons} />
     </div>

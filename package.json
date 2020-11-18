@@ -23,7 +23,8 @@
     "hookrouter": "^1.2.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
