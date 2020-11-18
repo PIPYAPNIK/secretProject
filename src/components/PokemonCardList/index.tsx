@@ -1,13 +1,25 @@
 import React from 'react';
 import s from './PokemonCardList.module.scss';
-import pokemons from '../../pokemons';
 import PokemonCard from '../PokemonCard';
 
-const PokemonCardList = () => {
+interface IPokemonCardList {
+  pokemons: Array<object>;
+}
+
+const PokemonCardList: React.FC<IPokemonCardList> = ({ pokemons }) => {
   return (
     <div className={s.root}>
-      {pokemons.map(({ name, stats: { attack, defense }, types, id }) => {
-        return <PokemonCard name={name} attack={attack} defense={defense} types={types} key={id} />;
+      {pokemons.map((el) => {
+        // @ts-ignore
+        return (
+          <PokemonCard
+            name={el.name}
+            attack={el.stats.attack}
+            defense={el.stats.defense}
+            types={el.types}
+            key={el.id}
+          />
+        );
       })}
     </div>
   );
