@@ -1,12 +1,14 @@
 @import '../../_varibales';
 
 .root {
-  height: 93px;
+  padding: 15px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background: $third;
   box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
+  position: relative;
+  z-index: 2;
 }
 
 .wrap {
@@ -21,6 +23,7 @@
 .pokemonLogo {
   width: 158px;
   height: 63px;
+  cursor: pointer;
 }
 
 .menuWrap {

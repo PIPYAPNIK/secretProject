@@ -1,26 +1,22 @@
 import { useEffect, useState } from 'react';
 import req from '../utils/request';
-import { IPokemon } from '../pokemonType';
 
 interface IUsePokemons {
-  data: {
-    total: number;
-    pokemons: Array<IPokemon>;
-  };
+  data: any;
   isLoading: boolean;
   isError: boolean;
 }
 
-const useData = (endpoint: string, query: object, deps: Array<any> = []): IUsePokemons => {
-  const [data, setData] = useState({ pokemons: [], total: 0 });
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+const useData = <T>(endpoint: string, query: object, deps: Array<any> = []): IUsePokemons => {
+  const [data, setData] = useState<T | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       setIsLoading(true);
       try {
-        const result = await req(endpoint, query);
+        const result = await req<T>(endpoint, query);
 
         setData(result);
       } catch (ex) {
@@ -30,7 +26,7 @@ const useData = (endpoint: string, query: object, deps: Array<any> = []): IUsePo
       }
     };
     getData();
-  }, [...deps]);
+  }, deps);
 
   return {
     data,

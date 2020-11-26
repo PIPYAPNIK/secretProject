@@ -1,16 +1,16 @@
 import React from 'react';
 import s from './PokemonCardList.module.scss';
 import PokemonCard from '../PokemonCard';
-import { IPokemon } from '../../pokemonType';
+import { PokemonsReques } from '../../interface/pokemons';
 
 interface IPokemonCardList {
-  pokemons: Array<IPokemon>;
+  pokemons: PokemonsReques[];
 }
 
 const PokemonCardList: React.FC<IPokemonCardList> = ({ pokemons }) => {
   return (
     <div className={s.root}>
-      {pokemons.map((el: IPokemon) => {
+      {pokemons.map((el: PokemonsReques) => {
         return (
           <PokemonCard
             name={el.name}
