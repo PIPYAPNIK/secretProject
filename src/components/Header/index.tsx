@@ -1,9 +1,9 @@
 import React from 'react';
 import cn from 'classnames';
-import { A, usePath } from 'hookrouter';
+import { A, navigate, usePath } from 'hookrouter';
 import s from './Header.module.scss';
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
-import { GENERAL_MENU } from '../../routes';
+import { GENERAL_MENU, LinkEnum } from '../../routes';
 
 const Header = () => {
   const path = usePath();
@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className={cn(s.root)}>
       <div className={cn(s.wrap)}>
-        <div className={cn(s.pokemonLogo)}>
+        <div className={cn(s.pokemonLogo)} onClick={() => navigate(LinkEnum.HOME)}>
           <PokemonLogoSvg />
         </div>
         <nav className={cn(s.menuWrap)}>

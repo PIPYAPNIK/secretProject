@@ -26,11 +26,13 @@ body {
   line-height: 1.2;
   margin: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #root {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a,
