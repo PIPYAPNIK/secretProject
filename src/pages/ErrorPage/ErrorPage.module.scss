@@ -1,14 +1,36 @@
 @import '../../_varibales';
 
 .root {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
-  height: 100vh;
+  height: 100%;
+  min-height: 870px;
+  flex-grow: 1;
   background-color: $danger;
+
+  @media (max-width: 1024px) {
+    & {
+      min-height: 750px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & {
+      min-height: 650px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    & {
+      min-height: 500px;
+    }
+  }
 }
 
 .content {
-  height: 100vh;
+  height: 100%;
   position: relative;
 }
 

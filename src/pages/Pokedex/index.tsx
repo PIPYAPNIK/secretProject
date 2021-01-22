@@ -3,6 +3,7 @@ import s from './Pokedex.module.scss';
 import PokemonCardList from '../../components/PokemonCardList';
 import Layout from '../../components/Layout';
 import Heading from '../../components/Heading';
+import Loader from '../../components/Loader';
 import useData from '../../hook/getData';
 import { PokemonsReques } from '../../interface/pokemons';
 import useDebounce from '../../hook/useDebounce';
@@ -15,7 +16,7 @@ interface IQuery {
 const Pokedex = () => {
   const [searchValue, setSaerchValue] = useState('');
   const [query, setQuery] = useState<IQuery>({
-    limit: 12,
+    limit: 9,
   });
 
   const debouncedValue = useDebounce(searchValue, 500);
@@ -31,7 +32,7 @@ const Pokedex = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (isError) {
@@ -41,11 +42,17 @@ const Pokedex = () => {
   return (
     <div className={s.root}>
       <Layout>
-        <Heading headingSize={1}>
+        <Heading headingSize={1} className={s['pokedex-title']}>
           {!isLoading && data && data.total} <b>Pokemons</b> for you to choose your favorite
         </Heading>
-        <div>
-          <input type="text" value={searchValue} onChange={handleSearchChange} />
+        <div className={s['pokemons-search']}>
+          <input
+            type="text"
+            value={searchValue}
+            onChange={handleSearchChange}
+            className={s['search-bar']}
+            placeholder="Encuentra tu pokémon..."
+          />
         </div>
       </Layout>
       <PokemonCardList pokemons={!isLoading && data && data.pokemons} />

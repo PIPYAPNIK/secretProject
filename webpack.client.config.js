@@ -7,7 +7,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   mode: NODE_ENV ? NODE_ENV : 'development',
-  entry: path.resolve(__dirname, 'src/index.ts'),
+  entry: path.resolve(__dirname, 'src/index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
@@ -73,7 +73,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    port: 3001,
+    port: 3002,
     open: true,
     hot: true,
     historyApiFallback: true,
