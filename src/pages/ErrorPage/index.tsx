@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore
 import { navigate } from 'hookrouter';
 import s from './ErrorPage.module.scss';
 import Heading from '../../components/Heading';

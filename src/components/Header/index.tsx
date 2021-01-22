@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+// @ts-ignore
 import { A, navigate, usePath } from 'hookrouter';
 import s from './Header.module.scss';
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';

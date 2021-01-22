@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore
 import { navigate } from 'hookrouter';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
