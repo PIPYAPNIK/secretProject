@@ -13,6 +13,15 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 576px) {
+    align-items: center;
+    flex-direction: column-reverse;
+
+    p:first-child {
+      margin-top: 10px;
+    }
+  }
 }
 
 .pharagraph {

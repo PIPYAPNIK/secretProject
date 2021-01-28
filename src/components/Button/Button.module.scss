@@ -16,6 +16,11 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
+  min-width: 250px;
+
+  @media (max-width: 768px) {
+    height: 55px;
+  }
 
   &:active {
     box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);

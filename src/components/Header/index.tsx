@@ -27,6 +27,32 @@ const Header = () => {
             </A>
           ))}
         </nav>
+        <div className="hamburger-menu">
+          <input id={s['menu__toggle']} type="checkbox" />
+          <label className={s['menu__btn']} htmlFor={s['menu__toggle']}>
+            <span></span>
+          </label>
+
+          <ul className={s['menu__box']}>
+            <li>
+              <div className={cn(s.pokemonLogo)} onClick={() => navigate(LinkEnum.HOME)}>
+                <PokemonLogoSvg />
+              </div>
+            </li>
+            {GENERAL_MENU.map(({ title, link }) => (
+              <li className={s['menu__item']}>
+                <A
+                  href={link}
+                  className={cn(s.menuLink, {
+                    [s.activeLink]: link === path,
+                  })}
+                  key={title}>
+                  {title}
+                </A>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </header>
   );
