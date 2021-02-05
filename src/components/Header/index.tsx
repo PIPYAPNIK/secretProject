@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 // @ts-ignore
 import { A, navigate, usePath } from 'hookrouter';
@@ -7,6 +7,7 @@ import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 import { GENERAL_MENU, LinkEnum } from '../../routes';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const path = usePath();
 
   return (
@@ -27,26 +28,43 @@ const Header = () => {
             </A>
           ))}
         </nav>
-        <div className="hamburger-menu">
-          <input id={s['menu__toggle']} type="checkbox" />
+        <div
+          className={cn(s['hamburger-menu'], {
+            [s.open]: isMenuOpen,
+          })}>
+          <input
+            id={s['menu__toggle']}
+            type="checkbox"
+            onChange={() => {
+              setIsMenuOpen(!isMenuOpen);
+            }}
+          />
           <label className={s['menu__btn']} htmlFor={s['menu__toggle']}>
             <span></span>
           </label>
 
           <ul className={s['menu__box']}>
             <li>
-              <div className={cn(s.pokemonLogo)} onClick={() => navigate(LinkEnum.HOME)}>
+              <div
+                className={cn(s.pokemonLogo)}
+                onClick={() => {
+                  navigate(LinkEnum.HOME);
+                  setIsMenuOpen(false);
+                }}>
                 <PokemonLogoSvg />
               </div>
             </li>
-            {GENERAL_MENU.map(({ title, link }) => (
+            {GENERAL_MENU.map(({ title, link }, i) => (
               <li className={s['menu__item']}>
                 <A
                   href={link}
                   className={cn(s.menuLink, {
                     [s.activeLink]: link === path,
                   })}
-                  key={title}>
+                  key={title}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}>
                   {title}
                 </A>
               </li>

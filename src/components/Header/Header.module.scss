@@ -104,30 +104,34 @@
 
 #menu__toggle {
   opacity: 0;
-  &:checked {
-    ~ {
-      .menu__btn {
-        position: fixed;
+}
 
-        > span {
-          transform: rotate(45deg);
-          &::before {
-            top: 0;
-            transform: rotate(0);
-          }
-          &::after {
-            top: 0;
-            transform: rotate(90deg);
-          }
+.hamburger-menu {
+  display: block;
+
+  &.open {
+    .menu__btn {
+      position: fixed;
+
+      > span {
+        transform: rotate(45deg);
+        &::before {
+          top: 0;
+          transform: rotate(0);
+        }
+        &::after {
+          top: 0;
+          transform: rotate(90deg);
         }
       }
-      .menu__box {
-        visibility: visible;
-        top: 0;
-      }
+    }
+    .menu__box {
+      visibility: visible;
+      top: 0;
     }
   }
 }
+
 .menu__btn {
   display: none;
   align-items: center;

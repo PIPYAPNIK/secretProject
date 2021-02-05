@@ -1,28 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import req from '../utils/request';
+import { featchPokemons, featchPokemonsReject, featchPokemonsResolve } from '../store/pokemonsSlice';
 
-interface IUsePokemons {
-  data: any;
-  isLoading: boolean;
-  isError: boolean;
-}
-
-const useData = <T>(endpoint: string, query: object, deps: Array<any> = []): IUsePokemons => {
-  const [data, setData] = useState<T | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+const useData = <T>(endpoint: string, query: object, deps: Array<any> = []) => {
+  const dispatch = useDispatch();
+  const { isLoading, data, error } = useSelector((state: any) => state.pokemons);
 
   useEffect(() => {
     const getData = async (): Promise<void> => {
-      setIsLoading(true);
+      dispatch(featchPokemons());
       try {
         const result = await req<T>(endpoint, query);
-
-        setData(result);
+        dispatch(featchPokemonsResolve(result));
       } catch (ex) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
+        dispatch(featchPokemonsReject(ex));
       }
     };
     getData();
@@ -31,7 +23,7 @@ const useData = <T>(endpoint: string, query: object, deps: Array<any> = []): IUs
   return {
     data,
     isLoading,
-    isError,
+    error,
   };
 };
 

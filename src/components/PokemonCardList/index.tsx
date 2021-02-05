@@ -10,7 +10,7 @@ interface IPokemonCardList {
 const PokemonCardList: React.FC<IPokemonCardList> = ({ pokemons }) => {
   return (
     <div className={s.root}>
-      {pokemons.map((el: PokemonsReques) => {
+      {pokemons?.map((el: PokemonsReques) => {
         return (
           <PokemonCard
             name={el.name}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Pokedex.module.scss';
 import PokemonCardList from '../../components/PokemonCardList';
 import Layout from '../../components/Layout';
@@ -11,31 +11,36 @@ import useDebounce from '../../hook/useDebounce';
 interface IQuery {
   name?: string;
   limit: number;
+  offset: number;
 }
+
+const limit = 9;
 
 const Pokedex = () => {
   const [searchValue, setSaerchValue] = useState('');
   const [query, setQuery] = useState<IQuery>({
-    limit: 9,
+    limit,
+    offset: 0,
   });
-
   const debouncedValue = useDebounce(searchValue, 500);
+  const { data, isLoading, error } = useData<PokemonsReques>('getPokemons', query, [debouncedValue]);
 
-  const { data, isLoading, isError } = useData<PokemonsReques>('getPokemons', query, [debouncedValue]);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSaerchValue(e.target.value);
+  useEffect(() => {
     setQuery((state: IQuery) => ({
       ...state,
       name: searchValue,
     }));
+  }, [searchValue]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSaerchValue(e.target.value);
   };
 
   if (isLoading) {
     return <Loader />;
   }
 
-  if (isError) {
+  if (error != null) {
     return <div>Error...</div>;
   }
 

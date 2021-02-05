@@ -4,13 +4,13 @@ const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState: {
     isLoading: false,
-    data: null,
+    data: [],
     error: null,
   },
   reducers: {
     featchPokemons(state) {
       state.isLoading = true;
-      state.data = null;
+      state.data = [];
       state.error = null;
     },
     featchPokemonsResolve(state, action) {
@@ -20,7 +20,7 @@ const pokemonsSlice = createSlice({
     },
     featchPokemonsReject(state, action) {
       state.isLoading = false;
-      state.data = null;
+      state.data = [];
       state.error = action.payload;
     },
   },
