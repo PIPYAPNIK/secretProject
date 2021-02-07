@@ -3,25 +3,25 @@ import { createSlice } from '@reduxjs/toolkit';
 const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState: {
-    isLoading: false,
-    data: null,
-    error: null,
+    isLoadingPokemons: false,
+    dataPokemons: [],
+    errorPokemons: null,
   },
   reducers: {
     featchPokemons(state) {
-      state.isLoading = true;
-      state.data = null;
-      state.error = null;
+      state.isLoadingPokemons = true;
+      state.dataPokemons = [];
+      state.errorPokemons = null;
     },
     featchPokemonsResolve(state, action) {
-      state.isLoading = false;
-      state.data = action.payload;
-      state.error = null;
+      state.isLoadingPokemons = false;
+      state.dataPokemons = action.payload;
+      state.errorPokemons = null;
     },
     featchPokemonsReject(state, action) {
-      state.isLoading = false;
-      state.data = null;
-      state.error = action.payload;
+      state.isLoadingPokemons = false;
+      state.dataPokemons = [];
+      state.errorPokemons = action.payload;
     },
   },
 });

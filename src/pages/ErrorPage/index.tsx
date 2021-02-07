@@ -3,6 +3,7 @@ import React from 'react';
 import { navigate } from 'hookrouter';
 import s from './ErrorPage.module.scss';
 import Heading from '../../components/Heading';
+// @ts-ignore
 import TeamRocket from './assets/teamRocket.png';
 import Button from '../../components/Button';
 import { LinkEnum } from '../../routes';

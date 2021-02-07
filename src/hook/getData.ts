@@ -1,38 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import req from '../utils/request';
 
-interface IUsePokemons {
-  data: any;
-  isLoading: boolean;
-  isError: boolean;
-}
-
-const useData = <T>(endpoint: string, query: object, deps: Array<any> = []): IUsePokemons => {
-  const [data, setData] = useState<T | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+const useData = <T>(
+  endpoint: string,
+  query: object,
+  deps: Array<any> = [],
+  featching: any,
+  featchingReject: any,
+  featchingReslove: any,
+) => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async (): Promise<void> => {
-      setIsLoading(true);
+      dispatch(featching());
       try {
         const result = await req<T>(endpoint, query);
-
-        setData(result);
+        dispatch(featchingReslove(result));
       } catch (ex) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
+        dispatch(featchingReject(ex));
       }
     };
     getData();
   }, deps);
-
-  return {
-    data,
-    isLoading,
-    isError,
-  };
 };
 
 export default useData;

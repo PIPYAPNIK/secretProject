@@ -17,7 +17,7 @@ export const config = {
           pathname: '/api/v1/pokemon/{id}',
         },
       },
-      gettypes: {
+      getTypes: {
         metod: 'GET',
         uri: {
           pathname: '/api/v1/types',

@@ -1,39 +1,68 @@
 import React from 'react';
 import Heading from '../Heading';
+import cn from 'classnames';
 import s from './PokemonCard.module.scss';
+import { toCapitalizeWord } from '../../utils/toCapitalizeWord';
 
-interface IPokemonCard {
-  abilities?: Array<string>;
-  height?: number;
-  name: string;
+interface IStats {
+  hp: number;
   attack: number;
   defense: number;
-  types: Array<string>;
-  img: string;
+  'special-attack': number;
+  'special-defense': number;
+  speed: number;
 }
 
-const PokemonCard: React.FC<IPokemonCard> = ({ name, attack, defense, types, img }) => {
+export interface IPokemonItem {
+  abilities: Array<string>;
+  stats: IStats;
+  types: Array<string>;
+  img: string;
+  name: string;
+  base_experience: number;
+  height?: number;
+  id: number;
+  is_default: boolean;
+  order: number;
+  weight: number;
+}
+
+interface IPokemonCard {
+  item: IPokemonItem;
+  index: number;
+}
+
+const PokemonCard: React.FC<IPokemonCard> = ({ item, index }) => {
+  const { abilities, stats, types, img, name, base_experience, height, id, is_default, order, weight } = item;
+
   return (
-    <div className={s.root}>
+    // @ts-ignore
+    <div className={cn(s.root, s[`bg-${index + 1}`])}>
       <div className={s.infoWrap}>
         <Heading headingSize={3} className={s.titleName}>
-          {name}
+          {toCapitalizeWord(name)}
         </Heading>
         <div className={s.statWrap}>
           <div className={s.statItem}>
-            <div className={s.statValue}>{attack}</div>
+            <div className={s.statValue}>{stats.attack}</div>
             Attack
           </div>
           <div className={s.statItem}>
-            <div className={s.statValue}>{defense}</div>
+            <div className={s.statValue}>{stats.defense}</div>
             Defense
           </div>
         </div>
         <div className={s.labelWrap}>
-          <span className={s.label}>{types[0]}</span>
+          {types.map((el, i) => {
+            return (
+              <span className={s.label} key={s.label + i}>
+                {toCapitalizeWord(el)}
+              </span>
+            );
+          })}
         </div>
       </div>
-      <div className={s.pictureWrap}>
+      <div className={cn(s.pictureWrap)}>
         <img src={img} alt={name} />
       </div>
     </div>
