@@ -1,6 +1,10 @@
 .root {
   display: block;
   padding-bottom: 85px;
+
+  @media (max-width: 576px) {
+    padding-bottom: 100px;
+  }
 }
 
 .pokedex-title {

@@ -1,30 +1,29 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import req from '../utils/request';
-import { featchPokemons, featchPokemonsReject, featchPokemonsResolve } from '../store/pokemonsSlice';
 
-const useData = <T>(endpoint: string, query: object, deps: Array<any> = []) => {
+const useData = <T>(
+  endpoint: string,
+  query: object,
+  deps: Array<any> = [],
+  featching: any,
+  featchingReject: any,
+  featchingReslove: any,
+) => {
   const dispatch = useDispatch();
-  const { isLoading, data, error } = useSelector((state: any) => state.pokemons);
 
   useEffect(() => {
     const getData = async (): Promise<void> => {
-      dispatch(featchPokemons());
+      dispatch(featching());
       try {
         const result = await req<T>(endpoint, query);
-        dispatch(featchPokemonsResolve(result));
+        dispatch(featchingReslove(result));
       } catch (ex) {
-        dispatch(featchPokemonsReject(ex));
+        dispatch(featchingReject(ex));
       }
     };
     getData();
   }, deps);
-
-  return {
-    data,
-    isLoading,
-    error,
-  };
 };
 
 export default useData;

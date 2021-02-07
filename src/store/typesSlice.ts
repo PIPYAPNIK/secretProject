@@ -3,28 +3,28 @@ import { createSlice } from '@reduxjs/toolkit';
 const pokemonsTypesSlice = createSlice({
   name: 'types',
   initialState: {
-    isLoading: false,
-    data: null,
-    error: null,
+    isLoadingTypes: false,
+    dataTypes: null,
+    errorTypes: null,
   },
   reducers: {
-    featchPokemons(state) {
-      state.isLoading = true;
-      state.data = null;
-      state.error = null;
+    featchTypes(state) {
+      state.isLoadingTypes = true;
+      state.dataTypes = null;
+      state.errorTypes = null;
     },
-    featchPokemonsResolve(state, action) {
-      state.isLoading = false;
-      state.data = action.payload;
-      state.error = null;
+    featchTypesResolve(state, action) {
+      state.isLoadingTypes = false;
+      state.dataTypes = action.payload;
+      state.errorTypes = null;
     },
-    featchPokemonsReject(state, action) {
-      state.isLoading = false;
-      state.data = null;
-      state.error = action.payload;
+    featchTypesReject(state, action) {
+      state.isLoadingTypes = false;
+      state.dataTypes = null;
+      state.errorTypes = action.payload;
     },
   },
 });
 
 export default pokemonsTypesSlice.reducer;
-export const { featchPokemons, featchPokemonsResolve, featchPokemonsReject } = pokemonsTypesSlice.actions;
+export const { featchTypes, featchTypesResolve, featchTypesReject } = pokemonsTypesSlice.actions;

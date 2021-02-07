@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import s from './Parallax.module.scss';
 
+// @ts-ignore
 import SmallPokeBallPng from './assets/PokeBall1.png';
+// @ts-ignore
 import CloudPng from './assets/Cloud2.png';
+// @ts-ignore
 import PokeBallPng from './assets/Pokeball2.png';
+// @ts-ignore
 import CloudBigPng from './assets/Cloud1.png';
+// @ts-ignore
 import PikachuPng from './assets/Pikachu.png';
 
 const Parallax = () => {

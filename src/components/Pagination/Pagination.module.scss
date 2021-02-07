@@ -1,0 +1,27 @@
+@import '../../_varibales';
+
+.root {
+  text-align: center;
+}
+
+.page-button {
+  border: 0;
+  outline: none;
+  background-color: #8c8c8c;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 10px;
+  color: #ffffff;
+  line-height: 0.5;
+  width: 36px;
+  height: 36px;
+
+  &:not(:last-of-type) {
+    margin-right: 15px;
+  }
+
+  &.active,
+  &:hover {
+    background-color: $third;
+  }
+}

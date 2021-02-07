@@ -3,6 +3,7 @@ import cn from 'classnames';
 // @ts-ignore
 import { A, navigate, usePath } from 'hookrouter';
 import s from './Header.module.scss';
+// @ts-ignore
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 import { GENERAL_MENU, LinkEnum } from '../../routes';
 
@@ -55,7 +56,7 @@ const Header = () => {
               </div>
             </li>
             {GENERAL_MENU.map(({ title, link }, i) => (
-              <li className={s['menu__item']}>
+              <li className={s['menu__item']} key={title}>
                 <A
                   href={link}
                   className={cn(s.menuLink, {

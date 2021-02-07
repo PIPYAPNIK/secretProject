@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "My project for learning React + TypeScript",
   "scripts": {
-    "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
-    "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
-    "start": "env NODE_ENV=development webpack-dev-server"
+    "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
+    "build:prod": "cros-senv NODE_ENV=production webpack --config webpack.config.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "@types/react-redux": "^7.1.15",
     "@types/react-router-dom": "^5.1.6",
     "classnames": "^2.2.6",
+    "cross-env": "^7.0.3",
     "handlebars": "^4.7.6",
     "hookrouter": "^1.2.5",
     "react": "^16.2.0",
@@ -82,8 +83,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [
-      "pretty-quick --staged",
-      "eslint ./src"
+      "pretty-quick --staged"
     ]
   }
 }

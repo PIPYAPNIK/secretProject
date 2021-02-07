@@ -3,5 +3,7 @@ webpack.client.config.js
 webpack.server.config.js
 src/components/Header/index.tsx
 src/server
+*.ts
+*.tsx
 
 *.css

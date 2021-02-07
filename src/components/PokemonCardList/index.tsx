@@ -10,17 +10,8 @@ interface IPokemonCardList {
 const PokemonCardList: React.FC<IPokemonCardList> = ({ pokemons }) => {
   return (
     <div className={s.root}>
-      {pokemons?.map((el: PokemonsReques) => {
-        return (
-          <PokemonCard
-            name={el.name}
-            attack={el.stats.attack}
-            defense={el.stats.defense}
-            types={el.types}
-            key={el.id}
-            img={el.img}
-          />
-        );
+      {pokemons?.map((el: PokemonsReques, i) => {
+        return <PokemonCard item={el} index={i} />;
       })}
     </div>
   );
