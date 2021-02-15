@@ -5,10 +5,10 @@ import req from '../utils/request';
 const useData = <T>(
   endpoint: string,
   query: object,
-  deps: Array<any> = [],
   featching: any,
   featchingReject: any,
   featchingReslove: any,
+  deps: Array<any> = [],
 ) => {
   const dispatch = useDispatch();
 

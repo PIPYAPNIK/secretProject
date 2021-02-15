@@ -1,0 +1,215 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  display: none;
+
+  &.active {
+    display: block;
+    z-index: 100;
+    position: fixed;
+    left: calc((100% - 800px) / 2);
+    top: calc((100% - 440px) / 2);
+  }
+}
+
+.popUpClose {
+  text-align: right;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  font-size: 0;
+  transform: rotate(45deg);
+  margin-left: auto;
+
+  &:before,
+  &:after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5.5px;
+    background-color: #212121;
+    border-radius: 2px;
+    top: 0;
+    content: '';
+  }
+
+  &:after {
+    transform: rotate(90deg);
+  }
+}
+
+.cardWrap {
+  display: flex;
+  min-height: 370px;
+}
+
+.imageBlock {
+  width: 365px;
+  padding: 35px 20px 20px;
+  background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
+  box-shadow: 4px 4px 8px rgba(1, 28, 64, 0.2);
+  border-radius: 8px 0px 0px 8px;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 0;
+  }
+}
+
+.typeRow {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+
+  & > span {
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: #212121;
+    padding: 2px 10px;
+    background: #f28f16;
+    box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
+    border-radius: 11px;
+
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+
+    &:nth-of-type(1) {
+      background: #73d677;
+    }
+
+    &:nth-of-type(2) {
+      background: #07d6f2;
+    }
+  }
+}
+
+.descBlock {
+  .title {
+    font-family: 'Karla';
+    font-weight: normal;
+    font-size: 16px;
+    align-items: center;
+    color: #000000;
+  }
+
+  .subtitle {
+    font-family: 'Source Sans Pro';
+  }
+
+  width: 435px;
+  background: linear-gradient(180deg, #732119 42.19%, #d93e30 100%);
+  border-radius: 0px 16px 16px 0px;
+  padding: 40px 20px 25px 15px;
+
+  h2 {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 1.2;
+    color: #fdfdfd;
+    text-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .topBlock {
+    margin-bottom: 20px;
+
+    .abilities {
+      background: #fdfdfd;
+      box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+      border-radius: 8px;
+      padding: 15px 30px;
+      max-width: 265px;
+    }
+  }
+
+  .middleBlock {
+    padding: 20px;
+    background: #fdfdfd;
+    box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    & > div {
+      width: 45%;
+      position: relative;
+      padding-bottom: 8px;
+
+      & > p:not(.title) {
+        font-weight: bold;
+      }
+
+      &:before,
+      & > span {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #f6f7f9;
+        border-radius: 8px;
+        height: 5px;
+        width: 100%;
+        font-size: 0;
+      }
+
+      & > span {
+        background: linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
+      }
+
+      &:first-of-type > span {
+        background: linear-gradient(270deg, #64d368 0.15%, #64d368 70.88%);
+      }
+    }
+  }
+
+  .bottomBlock {
+    display: flex;
+    justify-content: space-between;
+
+    & > div {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #fdfdfd;
+      box-shadow: 4px 4px 24px rgba(1, 17, 38, 0.2);
+      border-radius: 8px;
+      padding: 15px 5px;
+
+      span:first-of-type {
+        font-size: 16px;
+        color: #212121;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid #212121;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+
+      span:last-child {
+        font-size: 12px;
+        color: #4b4b4b;
+      }
+    }
+  }
+}

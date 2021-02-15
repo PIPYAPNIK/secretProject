@@ -30,14 +30,21 @@ export interface IPokemonItem {
 interface IPokemonCard {
   item: IPokemonItem;
   index: number;
+  setCurrentPokemon: any;
+  setIsPopUpOpen: any;
 }
 
-const PokemonCard: React.FC<IPokemonCard> = ({ item, index }) => {
+const PokemonCard: React.FC<IPokemonCard> = ({ item, index, setCurrentPokemon, setIsPopUpOpen }) => {
   const { abilities, stats, types, img, name, base_experience, height, id, is_default, order, weight } = item;
 
   return (
     // @ts-ignore
-    <div className={cn(s.root, s[`bg-${index + 1}`])}>
+    <div
+      className={cn(s.root, s[`bg-${index + 1}`])}
+      onClick={() => {
+        setCurrentPokemon(item);
+        setIsPopUpOpen(true);
+      }}>
       <div className={s.infoWrap}>
         <Heading headingSize={3} className={s.titleName}>
           {toCapitalizeWord(name)}
@@ -53,7 +60,7 @@ const PokemonCard: React.FC<IPokemonCard> = ({ item, index }) => {
           </div>
         </div>
         <div className={s.labelWrap}>
-          {types.map((el, i) => {
+          {types?.map((el, i) => {
             return (
               <span className={s.label} key={s.label + i}>
                 {toCapitalizeWord(el)}

@@ -4,13 +4,13 @@ const pokemonsTypesSlice = createSlice({
   name: 'types',
   initialState: {
     isLoadingTypes: false,
-    dataTypes: null,
+    dataTypes: [],
     errorTypes: null,
   },
   reducers: {
     featchTypes(state) {
       state.isLoadingTypes = true;
-      state.dataTypes = null;
+      state.dataTypes = [];
       state.errorTypes = null;
     },
     featchTypesResolve(state, action) {
@@ -20,7 +20,7 @@ const pokemonsTypesSlice = createSlice({
     },
     featchTypesReject(state, action) {
       state.isLoadingTypes = false;
-      state.dataTypes = null;
+      state.dataTypes = [];
       state.errorTypes = action.payload;
     },
   },
