@@ -38,8 +38,8 @@ const PokemonCard: React.FC<IPokemonCard> = ({ item, index, setCurrentPokemon, s
   const { abilities, stats, types, img, name, base_experience, height, id, is_default, order, weight } = item;
 
   return (
-    // @ts-ignore
     <div
+      // @ts-ignore
       className={cn(s.root, s[`bg-${index + 1}`])}
       onClick={() => {
         setCurrentPokemon(item);

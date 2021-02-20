@@ -1,34 +1,27 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import s from './SelectOption.module.scss';
 import cn from 'classnames';
+import { useDispatch } from 'react-redux';
 
 interface ISelectOption {
   name: string;
-  setActiveTypes: any;
-  activeTypes: Array<string>;
+  setActiveType: any;
+  activeType: string;
 }
 
-const SelectOption: React.FC<ISelectOption> = ({ name, setActiveTypes, activeTypes }) => {
-  const initialActiveStatus = activeTypes.includes(name.toLowerCase());
-  const [isActive, setIsActive] = useState<boolean>(initialActiveStatus);
+const SelectOption: React.FC<ISelectOption> = ({ name, setActiveType, activeType }) => {
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const handleOptionClick = () => {
-    setIsActive(!isActive);
+    if (isActive) dispatch(setActiveType(''));
+    else dispatch(setActiveType(name.toLowerCase()));
   };
 
   useEffect(() => {
-    const elem = name.toLowerCase();
-
-    if (isActive) {
-      setActiveTypes([...activeTypes, elem]);
-    } else {
-      if (activeTypes.length >= 1) {
-        const elIndex = activeTypes.indexOf(elem);
-        activeTypes.splice(elIndex, 1);
-        setActiveTypes([...activeTypes]);
-      }
-    }
-  }, [isActive]);
+    if (name.toLowerCase() === activeType) setIsActive(true);
+    else setIsActive(false);
+  }, [activeType]);
 
   return (
     <div className={cn(s.selectOption, { [s.active]: isActive })} key={name} onClick={() => handleOptionClick()}>

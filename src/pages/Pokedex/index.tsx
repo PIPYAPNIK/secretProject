@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import s from './Pokedex.module.scss';
 import PokemonCardList from '../../components/PokemonCardList';
 import Layout from '../../components/Layout';
@@ -11,6 +11,7 @@ import Pagination from '../../components/Pagination';
 import { useSelector } from 'react-redux';
 import { featchPokemons, featchPokemonsReject, featchPokemonsResolve } from '../../store/pokemonsSlice';
 import { featchTypes, featchTypesReject, featchTypesResolve } from '../../store/typesSlice';
+import { changeActiveType } from '../../store/localSlice';
 import PopUpCard from '../../components/PopUpCard';
 import { IPokemonItem } from '../../components/PokemonCard';
 import cn from 'classnames';
@@ -28,23 +29,26 @@ const limit = 9;
 const Pokedex = () => {
   const [searchValue, setSaerchValue] = useState('');
   const [offset, setOffset] = useState<number>(0);
-  const [activeTypes, setActiveTypes] = useState<Array<string>>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPokemon, setCurrentPokemon] = useState<IPokemonItem | object>({});
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+
+  const { isLoadingPokemons, dataPokemons, errorPokemons } = useSelector((state: any) => state.pokemons);
+  const { isLoadingTypes, dataTypes, errorTypes } = useSelector((state: any) => state.types);
+  const { activeType } = useSelector((state: any) => state.local);
+
   const [query, setQuery] = useState<IQuery>({
     limit,
     offset: offset,
-    types: activeTypes.join('|'),
+    types: activeType,
     name: '',
   });
+
   const debouncedValue = useDebounce(searchValue, 500);
+  const totalPages = Math.ceil(dataPokemons.total / limit);
+
   useData<PokemonsReques>('getPokemons', query, featchPokemons, featchPokemonsReject, featchPokemonsResolve, [query]);
   useData('getTypes', {}, featchTypes, featchTypesReject, featchTypesResolve, []);
-  const { isLoadingPokemons, dataPokemons, errorPokemons } = useSelector((state: any) => state.pokemons);
-  const { isLoadingTypes, dataTypes, errorTypes } = useSelector((state: any) => state.types);
-  const totalPages = Math.ceil(dataPokemons.total / limit);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  const [currentPokemon, setCurrentPokemon] = useState<IPokemonItem | object>({});
-  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   useEffect(() => {
     setQuery((state: IQuery) => ({
@@ -66,10 +70,10 @@ const Pokedex = () => {
   useEffect(() => {
     setQuery((state: IQuery) => ({
       ...state,
-      types: activeTypes.join('|'),
+      types: activeType,
     }));
     setIsPopUpOpen(false);
-  }, [activeTypes]);
+  }, [activeType]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSaerchValue(e.target.value);
@@ -82,8 +86,6 @@ const Pokedex = () => {
   if (errorPokemons != null || errorTypes != null) {
     return <div>Error...</div>;
   }
-
-  console.log(activeTypes);
 
   return (
     <div className={s.root}>
@@ -103,8 +105,8 @@ const Pokedex = () => {
         <FiltersBlock
           selectName={'Types'}
           selectItems={dataTypes}
-          activeTypes={activeTypes}
-          setActiveTypes={setActiveTypes}
+          activeType={activeType}
+          setActiveType={changeActiveType}
         />
         <PokemonCardList
           pokemons={!isLoadingPokemons && dataPokemons && dataPokemons.pokemons}

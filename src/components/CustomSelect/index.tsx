@@ -7,11 +7,11 @@ import SelectOption from '../SelectOption';
 interface ICustomSelect {
   name: string;
   items: Array<string>;
-  setActiveTypes: any;
-  activeTypes: Array<string>;
+  setActiveType: any;
+  activeType: string;
 }
 
-const CustomSelect: React.FC<ICustomSelect> = ({ name, items, setActiveTypes, activeTypes }) => {
+const CustomSelect: React.FC<ICustomSelect> = ({ name, items, setActiveType, activeType }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -28,8 +28,8 @@ const CustomSelect: React.FC<ICustomSelect> = ({ name, items, setActiveTypes, ac
             <SelectOption
               key={name + i}
               name={toCapitalizeWord(el)}
-              activeTypes={activeTypes}
-              setActiveTypes={setActiveTypes}
+              activeType={activeType}
+              setActiveType={setActiveType}
             />
           );
         })}
