@@ -2,11 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   active: string;
-  overlay: string;
-  'pokedex-title': string;
-  'pokemons-search': string;
-  root: string;
-  'search-bar': string;
+  selectOption: string;
 }
 export const cssExports: CssExports;
 export default cssExports;

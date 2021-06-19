@@ -5,6 +5,10 @@
   width: 100%;
   bottom: 0;
   z-index: 2;
+
+  &.light {
+    color: #ffffff !important;
+  }
 }
 
 .wrap {

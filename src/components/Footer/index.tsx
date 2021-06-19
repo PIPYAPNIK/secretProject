@@ -4,7 +4,7 @@ import s from './Footer.module.scss';
 
 const Footer = () => {
   return (
-    <footer className={cn(s.root)}>
+    <footer className={cn(s.root, location.pathname ? (location.pathname === '/legendaries' ? s.light : '') : '')}>
       <div className={cn(s.wrap)}>
         <p className={cn(s.pharagraph)}>
           Make with <span role="img">❤</span>

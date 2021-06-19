@@ -44,7 +44,7 @@ const Pokedex = () => {
     name: '',
   });
 
-  const debouncedValue = useDebounce(searchValue, 500);
+  const debouncedValue = useDebounce(searchValue, 1500);
   const totalPages = Math.ceil(dataPokemons.total / limit);
 
   useData<PokemonsReques>('getPokemons', query, featchPokemons, featchPokemonsReject, featchPokemonsResolve, [query]);
@@ -64,6 +64,7 @@ const Pokedex = () => {
       name: searchValue,
     }));
     setCurrentPage(1);
+    setOffset(0);
     setIsPopUpOpen(false);
   }, [debouncedValue]);
 

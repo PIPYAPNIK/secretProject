@@ -1,0 +1,270 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding-right: 120px;
+  color: #ffffff;
+  margin-bottom: 60px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.slider-title {
+  font-family: Karla, sans-serif;
+  font-weight: normal;
+  font-size: 72px;
+  width: 100%;
+  border-bottom: 1px solid #ffffff;
+  padding-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 54px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 40px;
+  }
+}
+
+.active-slide {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 60px 0;
+
+  @media (max-width: 768px) {
+    padding: 30px 0;
+  }
+
+  &__image {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media (max-width: 1024px) {
+      width: 45%;
+    }
+
+    @media (max-width: 768px) {
+      width: 70%;
+      justify-content: center;
+      margin: 0 auto 30px;
+    }
+
+    & > img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__info {
+    width: 40%;
+
+    @media (max-width: 1024px) {
+      width: 45%;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    .pokemon-name {
+      font-family: Karla, sans-serif;
+      font-weight: normal;
+      font-size: 72px;
+      color: #fdfdfd;
+      margin-bottom: 20px;
+
+      @media (max-width: 768px) {
+        font-size: 54px;
+        margin-bottom: 15px;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 40px;
+      }
+    }
+
+    .pokemon-desc {
+      font-family: Source Sans Pro, sans-serif;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 15px;
+
+      &__item {
+        width: 45%;
+        font-family: Karla, sans-serif;
+        font-weight: normal;
+        font-size: 16px;
+        color: #fdfdfd;
+        margin-bottom: 30px;
+
+        .metric {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        .name {
+          margin-bottom: 5px;
+        }
+
+        .metric-line {
+          position: relative;
+
+          &__all {
+            height: 7px;
+            width: 100%;
+            background: #f6f7f9;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+          }
+
+          &__item {
+            height: 7px;
+            background: #f5db13;
+            border-radius: 8px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 5;
+          }
+        }
+      }
+    }
+  }
+}
+
+.slides-block {
+  padding: 0 50px;
+  width: calc(100% + 50px);
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.slider-arrow {
+  display: block;
+  font-size: 0;
+  width: 30px;
+  height: 60px;
+  position: absolute;
+  top: calc((100% - 60px) / 2);
+  z-index: 10;
+
+  &.prev {
+    left: -30px;
+
+    @media (max-width: 768px) {
+      left: -40px;
+    }
+  }
+
+  &.next {
+    right: -30px;
+
+    @media (max-width: 768px) {
+      right: -40px;
+    }
+  }
+}
+
+.slide-wrapper {
+  padding: 15px 20px 0;
+  transition: 0.3s;
+  opacity: 0.5;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: linear-gradient(
+    215.78deg,
+    #b57e10 -124.09%,
+    #b57e10 -78.76%,
+    #f9df7b -35.76%,
+    #fff3a6 8.4%,
+    #f9df7b 50.24%,
+    #b57e10 99.06%
+  );
+  border-radius: 15px;
+  min-height: 180px;
+  cursor: pointer;
+
+  @media (max-width: 1200px) {
+    min-height: 250px;
+  }
+
+  @media (max-width: 1024px) {
+    min-height: 280px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 320px;
+  }
+
+  @media (max-width: 576px) {
+    min-height: 420px;
+  }
+
+  @media (max-width: 500px) {
+    min-height: 370px;
+  }
+
+  @media (max-width: 450px) {
+    min-height: 300px;
+  }
+
+  @media (max-width: 400px) {
+    min-height: 270px;
+  }
+
+  &__image {
+    position: absolute;
+    width: calc(100% + 40px);
+    left: -20px;
+    top: -15px;
+    z-index: 5;
+  }
+
+  &__name {
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    filter: drop-shadow(4px 4px 4px rgba(33, 33, 33, 0.1));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      font-family: Roboto, sans-serif;
+      font-weight: normal;
+      font-size: 18px;
+      color: #1d1e1d;
+    }
+
+    img {
+      width: 18px;
+      height: auto;
+    }
+  }
+}
